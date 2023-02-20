@@ -39,7 +39,7 @@ const Home = () => {
             <div className='p-6 bg-motif'>
                 {user && user.user && <Profile user={user.user} dispatch={() => dispatchUser({ type: 'TOGGLE', payload: true })} />}
             </div>
-            <QrCode user={user.user} dispatch={() => dispatchUser({ type: 'TOGGLE', payload: true })} />
+            <QrCode user={user.user} dispatch={() => dispatchUser({ type: 'TOGGLE', payload: true })} toggle={user.toggleModal} />
         </div>
     );
 }

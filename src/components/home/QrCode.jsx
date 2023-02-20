@@ -1,6 +1,6 @@
-const QrCode = ({ user, dispatch }) => {
+const QrCode = ({ user, dispatch, toggle }) => {
     return (
-        <div className={`${user.toggleModal ? '' : 'hidden'} absolute inset-0 flex justify-center items-center text-center bg-modal p-2`}>
+        <div className={`${toggle ? '' : 'hidden'} absolute inset-0 flex justify-center items-center text-center bg-modal p-2`}>
             <div className="w-full h-full bg-white relative text-center z-20">
                 <i className="fa fa-times absolute top-4 right-4 text-xl cursor-pointer" onClick={dispatch()} />
                 <div className="text-center mt-20">
