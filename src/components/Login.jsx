@@ -44,7 +44,7 @@ const Login = () => {
     }
 
     useEffect(() => {
-        if (auth.auth.access_token) return navigate(`user/${auth.auth.expires_in}`)
+        if (auth.auth.access_token) return navigate('user')
     }, [auth.auth.access_token])
 
     return (

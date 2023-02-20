@@ -1,8 +1,8 @@
 export const MenuReducer = (state, action) => {
     switch (action.type) {
-        case 'REQUEST_MENU':
+        case 'FETCH_MENU':
             return { ...state, menu: action.payload }
-        case 'REQUEST_ERROR':
+        case 'FETCH_MENU_ERROR':
             return { ...state, requestError: action.payload }
     }
 }

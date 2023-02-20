@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundColor: {
+        'modal': 'rgba(0, 0, 0, 0.2)'
+      },
       backgroundImage: {
         motif: "url('./src/assets/motif.png')"
       }

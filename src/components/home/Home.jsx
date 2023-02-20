@@ -2,11 +2,13 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import logo from '../../assets/logo technopartner.png';
 import { AuthContext } from '../../context/authcontext';
+import { UserContext } from '../../context/userContext';
 import Profile from './Profile';
+import QrCode from './QrCode';
 
 const Home = () => {
     const { auth, dispatchAuth } = useContext(AuthContext);
-    const [user, setUser] = useState({});
+    const { user, dispatchUser } = useContext(UserContext);
     useEffect(() => {
         if (!auth.auth.access_token) return navigate('/');
         async function getUserData() {
@@ -16,23 +18,30 @@ const Home = () => {
                         Authorization: `${auth.auth.token_type} ${auth.auth.access_token}`,
                     }
                 });
-                setUser(response.data);
-                console.log(response)
+                dispatchUser({
+                    type: 'FETCH_USER',
+                    payload: response.data
+                })
             } catch (err) {
-                console.log(err)
+                dispatchUser({
+                    type: 'FETCH_USER_ERROR',
+                    payload: err.message
+                })
             }
         };
         getUserData();
-    }, [auth.auth.expires_in]);
-    console.log(user)
+    }, [auth.auth.access_token]);
+    console.log(user);
+    console.log(auth);
     return (
         <div className="w-full">
             <div>
                 <img src={logo} alt="logo" className='h-16' />
             </div>
             <div className='p-6 bg-motif'>
-                <Profile user={user.user} />
+                {user && user.user && <Profile user={user} />}
             </div>
+            <QrCode />
         </div>
     );
 }
